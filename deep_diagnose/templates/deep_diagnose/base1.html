@@ -47,31 +47,17 @@
                         ADMIN COMPANY LIST
                     </a>
                 </li>
-                {% if user.is_authenticated %}
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:profile' %}">PROFILE</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link"href="{% url 'deep_diagnose:find' %}">
-                        User
-                    </a>
+                    <a class="nav-link" href="{% url 'deep_diagnose:admin-profile' %}">{{ user.username }}</a>
                 </li>
 
 
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:register' %}">SIGNUP</a>
-                </li>
 
 
-                {% endif %}
 
             </ul>
         </div>

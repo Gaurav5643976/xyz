@@ -10,7 +10,9 @@
 <li><a href="#">{{ companytests.tests }}</a>
 <br>Rs-{{ companytests.cost }}
 </li>
- <br><br><br>
+ <br>
+ <a href="{% url 'deep_diagnose:ordernow' %}">ordernow</a><br><br>
+ </li><br><br><br>
 {% endfor %}
 </ul>
 </div>

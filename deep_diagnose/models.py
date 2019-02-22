@@ -57,3 +57,4 @@ class OrderInfo(models.Model):
 class Company(models.Model):
     company = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+

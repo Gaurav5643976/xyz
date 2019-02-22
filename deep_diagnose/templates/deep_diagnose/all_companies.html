@@ -1,9 +1,15 @@
 {% extends 'deep_diagnose/base.html' %}
 {% block body %}
-<div class="companies text-center" style="padding-top:15rem;">
-{% for company in all_companies %}
-<div class="title"><li><a href="{% url 'deep_diagnose:company_detail' company.id %}">{{company.company_name}}</a><br><br>
-</div>
-{% endfor %}
-</div>
+
+<br><br><br>
+
+    <ul class="dropdown-menu">
+            {% for company in all_companies %}
+        <div class="title"><li><a href="{% url 'deep_diagnose:company_detail' company.id %}">{{company.company_name}}</a><br><br></li>
+        </div>
+</ul>
+        {% endfor %}
+
 {% endblock %}
+
+

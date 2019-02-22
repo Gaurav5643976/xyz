@@ -61,3 +61,8 @@ class Company(forms.ModelForm):
         model = Company
         fields = ('company','password')
     confirm_password = forms.CharField(max_length=100)
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label=(u'Username'))
+    password = forms.CharField(label=(u'Pasword'), widget=forms.PasswordInput(render_value=False))

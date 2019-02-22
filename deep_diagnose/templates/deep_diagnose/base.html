@@ -22,56 +22,48 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="{% url 'deep_diagnose:find' %}"><img src="{% static 'deep_diagnose/img/logo.jpg' %}"> Deep Diagnose</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+             </button>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link" href="#home">HOME</a>-->
-                <!--</li>-->
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:test_list' %}">TESTS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:company_list' %}">LABS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:ordernow' %}">BOOK NOW</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:adminhome' %}">Admin</a>
-                </li>
-
-
-                {% if user.is_authenticated %}
-<li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
-                </li>
-<li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:profile' %}">PROFILE</a>
-                </li>
 
 
 
+                     <li class="nav-item">
+                       <a class="nav-link" href="{% url 'deep_diagnose:test_list' %}">TESTS</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="{% url 'deep_diagnose:company_list' %}">LABS</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="{% url 'deep_diagnose:ordernow' %}">BOOK NOW</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="{% url 'deep_diagnose:admin-login' %}">ADMIN</a>
+                     </li>
 
-{% else %}
- <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'deep_diagnose:register' %}">SIGNUP</a>
-                </li>
 
+                   {% if user.is_authenticated %}
+                      <li class="nav-item">
+                       <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'deep_diagnose:profile' %}">{{ user.username }}</a>
+                      </li>
+                   {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">USER</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'deep_diagnose:register' %}">SIGNUP</a>
+                      </li>
 
-{% endif %}
-
+                {% endif %}
             </ul>
         </div>
-
     </nav>
-
 </div>
 
 {% block body %}

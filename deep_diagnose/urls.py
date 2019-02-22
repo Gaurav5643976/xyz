@@ -56,4 +56,9 @@ urlpatterns = [
     url(r'^admin_company_list/$', views.AdminCompanyList.as_view(), name='admin_company_list'),
 
     path('adminhome/', views.adminhome, name='adminhome'),
+
+    url(r'^login-admin/$', views.loginAdminPanel, name='admin-login'),
+
+    path('adminprofile/', views.adminprofile, name='admin-profile'),
+
 ]

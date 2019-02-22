@@ -1,10 +1,10 @@
 
 from .filters import CompanyFilter
 from django.views import generic
-from .models import CompanyDetail, Tests, Company, CompanyTests, OrderInfo
+from .models import CompanyDetail, Tests,  CompanyTests, OrderInfo
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth.decorators import login_required
-from . forms import UserRegistrationForm, Company
+from . forms import UserRegistrationForm, Company, LoginForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
@@ -31,10 +31,6 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'deep_diagnose/register.html', {'form': form})
 
-
-# for finding companies in a particular area
-def home(request):
-    return render(request, 'deep_diagnose/user_location.html')
 
 # for finding companies in a particular area
 def home(request):
@@ -131,7 +127,7 @@ class TestCreate(CreateView):
 
 class TestUpdate(UpdateView):
     model = Tests
-    fields = ['test_name', 'test_details']
+    fields = ['test_details']
     success_url = reverse_lazy('deep_diagnose:find')
 
 
@@ -177,6 +173,44 @@ def create(request):
         return render(request,'deep_diagnose/companyregister.html',context)
 
 
+# company login
+# def login(request):
+#
+#     form = login_form()
+#     if request.method=='GET':
+#         if request.session.has_key('company'):
+#             username = request.session['company']
+#             context = {
+#                 'username': username,
+#             }
+#             return redirect("/adminhome")
+#         else:
+#             error = "please login"
+#             context = {
+#                 'form': form
+#             }
+#             return render(request,'deep_diagnose/companylogin.html',context)
+#     else:
+#         form = login_form(request.POST)
+#         if form.is_valid():
+#             company = form.cleaned_data['company']
+#             password = form.cleaned_data['password']
+#             check = CompanyLogin.objects.filter(company=company, password=password).count()
+#             if check >= 1:
+#                 request.session['company'] = company
+#                 error = "please login"
+#                 context = {
+#                     'username':company
+#                 }
+#                 return redirect('/adminhome')
+#             else:
+#                 error = "Please login"
+#                 context = {
+#                     'error':error
+#                 }
+#                 return redirect('/adminhome')
+
+
 class AdminTestList(generic.ListView):
     template_name = 'deep_diagnose/admin_test_list.html'
     context_object_name = 'all_tests'
@@ -193,5 +227,32 @@ class AdminCompanyList(generic.ListView):
         return CompanyDetail.objects.all().order_by('company_name')
 
 
+@login_required
 def adminhome(request):
-    return render(request, 'deep_Diagnose/adminhome.html')
+        return render(request,'deep_diagnose/adminhome.html')
+
+
+def loginAdminPanel(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            account = authenticate(username=username, password=password)
+            if account is not None:
+                login(request, account)
+                #here is redirecting to admin panel
+                return HttpResponseRedirect('/adminhome/')
+            else:
+                return render(request, 'registration/adminlogin.html')
+        else:
+            return render(request, 'registration/adminlogin.html')
+    else:
+        form = LoginForm()
+        context = {'form':form}
+        return render(request, 'registration/adminlogin.html', context)
+
+
+@login_required
+def adminprofile(request):
+    return render(request, 'deep_diagnose/adminprofile.html')
