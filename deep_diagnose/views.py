@@ -53,6 +53,11 @@ class CompanyList(generic.ListView):
         return CompanyDetail.objects.all().order_by('company_name')
 
 
+def companylist(request):
+    companies=CompanyDetail.objects.all()
+    return render(request,'deep_diagnose/base.html',{'companies':companies})
+
+
 # gives details about the company->tests,price,contact info
 class CompanyDetails(generic.DetailView):
     model = CompanyDetail
@@ -171,44 +176,6 @@ def create(request):
                 }
 
         return render(request,'deep_diagnose/companyregister.html',context)
-
-
-# company login
-# def login(request):
-#
-#     form = login_form()
-#     if request.method=='GET':
-#         if request.session.has_key('company'):
-#             username = request.session['company']
-#             context = {
-#                 'username': username,
-#             }
-#             return redirect("/adminhome")
-#         else:
-#             error = "please login"
-#             context = {
-#                 'form': form
-#             }
-#             return render(request,'deep_diagnose/companylogin.html',context)
-#     else:
-#         form = login_form(request.POST)
-#         if form.is_valid():
-#             company = form.cleaned_data['company']
-#             password = form.cleaned_data['password']
-#             check = CompanyLogin.objects.filter(company=company, password=password).count()
-#             if check >= 1:
-#                 request.session['company'] = company
-#                 error = "please login"
-#                 context = {
-#                     'username':company
-#                 }
-#                 return redirect('/adminhome')
-#             else:
-#                 error = "Please login"
-#                 context = {
-#                     'error':error
-#                 }
-#                 return redirect('/adminhome')
 
 
 class AdminTestList(generic.ListView):

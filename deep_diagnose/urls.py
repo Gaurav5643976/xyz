@@ -61,4 +61,8 @@ urlpatterns = [
 
     path('adminprofile/', views.adminprofile, name='admin-profile'),
 
+    path('company/', views.companylist, name='companylist'),
+
+
+
 ]
