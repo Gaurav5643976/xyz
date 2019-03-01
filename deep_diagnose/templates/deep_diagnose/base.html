@@ -58,9 +58,7 @@
                      <li class="nav-item">
                        <a class="nav-link" href="{% url 'deep_diagnose:ordernow' %}">BOOK NOW</a>
                      </li>
-                     <li class="nav-item">
-                       <a class="nav-link" href="{% url 'deep_diagnose:admin-login' %}">ADMIN</a>
-                     </li>
+
 
 
                    {% if user.is_authenticated %}
@@ -70,6 +68,9 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'deep_diagnose:profile' %}">{{ user.username }}</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">ADD TO CART</a>
+                      </li>
                    {% else %}
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">USER</a>
@@ -77,7 +78,9 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'deep_diagnose:register' %}">SIGNUP</a>
                       </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'deep_diagnose:admin-login' %}">ADMIN</a>
+                </li>
                 {% endif %}
             </ul>
         </div>

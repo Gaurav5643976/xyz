@@ -5,15 +5,39 @@
 {% if error_message %}
 <p><strong>{{ error_message }}</strong></p>
 {% endif %}
-<ul></ul>
-{% for companytests in company.companytests_set.all %}
-<li><a href="#">{{ companytests.tests }}</a>
-<br>Rs-{{ companytests.cost }}
-</li>
- <br>
- <a href="{% url 'deep_diagnose:ordernow' %}">ordernow</a><br><br>
- </li><br><br><br>
-{% endfor %}
-</ul>
+
+ <div class="table-responsive-sm">
+  <table class="table table-bordered">
+   <thead>
+   <tr>
+    <th scope="col">SNO</th>
+    <th scope="col"> TEST</th>
+    <th scope="col">PRICE</th>
+    <th scope="col">BOOK</th>
+
+   </tr>
+   </thead>
+   <tbody>
+   {% for companytests in company.companytests_set.all %}
+   <tr>
+    <th scope="row">{{ companytests.id }}</th>
+    <td>{{ companytests.tests }}</td>
+    <td>Rs-{{ companytests.cost }}</td>
+    <td><a href="{% url 'deep_diagnose:ordernow' %}">BOOK NOW!</a></td>
+   </tr>
+   {% endfor %}
+   </tbody>
+  </table>
+ </div>
 </div>
+<!--{% for companytests in company.companytests_set.all %}-->
+<!--<li><a href="#">{{ companytests.tests }}</a>-->
+<!--<br>Rs-{{ companytests.cost }}-->
+<!--</li>-->
+ <!--<br>-->
+ <!--<a href="{% url 'deep_diagnose:ordernow' %}">ordernow</a><br><br>-->
+ <!--</li><br><br><br>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+<!--</div>-->
 {% endblock %}

@@ -5,19 +5,43 @@
 {% endif %}
 <br><br><br>
 
-<ul>
-{% for companytests in test.companytests_set.all %}
-<li>{{ company.logo.url }}
-    <a href="#">{{ companytests.company_name }}</a>
-    <br>Rs-{{ companytests.cost }}
-    <br>
-    <form method="post" action="{% url 'deep_diagnose:ordernow'%}">
-        {% csrf_token %}
-        <input type="submit" name="submit" value="order now">
-    </form>
-<br><br>
-</li>
-</li><br><br><br>
-{% endfor %}
-</ul>
+
+<div class="table-responsive-sm">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">SNO</th>
+            <th scope="col"> TEST</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">BOOK</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for companytests in test.companytests_set.all %}  <tr>
+            <th scope="row">{{ companytests.id }}</th>
+            <td>{{ companytests.company_name }}</td>
+            <td>Rs-{{ companytests.cost }}</td>
+            <td><a href="{% url 'deep_diagnose:ordernow' %}">BOOK NOW!</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<!--{% for companytests in test.companytests_set.all %}-->
+<!--{{ company.logo.url }}-->
+    <!--<a href="#">{{ companytests.company_name }}</a>-->
+    <!--<br>Rs-{{ companytests.cost }}-->
+    <!--<br>-->
+    <!--<form method="post" action="{% url 'deep_diagnose:ordernow'%}">-->
+        <!--{% csrf_token %}-->
+        <!--<input type="submit" name="submit" value="order now">-->
+    <!--</form>-->
+<!--<br><br>-->
+<!--<br><br><br>-->
+<!--{% endfor %}-->
+
 {% endblock %}

@@ -12,9 +12,6 @@ urlpatterns = [
 
 
     # /
-    # for list of all companies
-    url(r'^$', views.CompanyList.as_view(), name='company_list'),
-
     # /company/id(1,2..)
     # giving company details like tests and their price
     url(r'^company/(?P<pk>[0-9]+)/$', views.CompanyDetails.as_view(), name='company_detail'),

@@ -58,3 +58,9 @@ class Company(models.Model):
     company = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
 
+
+class AddToCart(models.Model):
+    user = models.CharField(max_length=100)
+    test_name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=200)
+    price = models.IntegerField()

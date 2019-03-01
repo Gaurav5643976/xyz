@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'deep_diagnose',
     'django_filters',
     'social_django',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,4 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ujDG6ks6a34GNMzg7S124RXI'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'deep_diagnose:profile'
 django_heroku.settings(locals())
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
